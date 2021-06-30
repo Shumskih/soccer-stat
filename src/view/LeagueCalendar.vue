@@ -35,6 +35,7 @@ import Loader from '../components/Loader'
 import RangeFilter from '../components/RangeFilter'
 import TeamCard from '../components/TeamCard'
 import {request} from '../api'
+import {computed, errorHandler, variables} from '../mixins'
 
 export default {
   name: 'LeagueCalendar',
@@ -47,15 +48,10 @@ export default {
     search: String,
     year: String
   },
+  mixins: [variables, computed, errorHandler],
   data () {
     return {
-      matches: null,
-      leagueName: null,
-      loading: true,
-      noData: false,
-      forbidden: false,
-      filterError: false,
-      notFound: false
+      leagueName: null
     }
   },
   watch: {
@@ -93,37 +89,7 @@ export default {
       }
     }
   },
-  computed: {
-    filteredList () {
-      const search = this.search
-
-      return this.matches.filter(function (match) {
-        if (match.awayTeam.name && match.homeTeam.name) {
-          return (
-            match.awayTeam.name.toLowerCase().indexOf(search.toLowerCase()) > -1 ||
-            match.homeTeam.name.toLowerCase().indexOf(search.toLowerCase()) > -1
-          )
-        }
-      })
-    }
-  },
   methods: {
-    errorHandler (error) {
-      switch (error.response.status) {
-        case 403:
-          this.forbidden = true
-          break
-        case 400:
-          this.filterError = true
-          break
-        case 404:
-          this.notFound = true
-          break
-        default:
-          this.noData = true
-          break
-      }
-    },
     resetVariables () {
       this.matches = []
       this.loading = false
