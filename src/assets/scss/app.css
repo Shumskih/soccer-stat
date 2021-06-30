@@ -1,0 +1,71 @@
+header {
+  box-shadow: 2px -5px 8px 0 rgba(34, 60, 80, 0.2);
+}
+
+a {
+  text-decoration: none;
+}
+
+a .card {
+  color: #212529;
+  transition: all 0.3s ease 0s;
+}
+
+a .card:hover {
+  color: cadetblue;
+  box-shadow: -4px 4px 8px 0 rgba(34, 60, 80, 0.4);
+}
+
+.card {
+  transition: all 0.3s ease 0s;
+}
+
+.card:hover {
+  color: cadetblue;
+  box-shadow: -4px 4px 8px 0 rgba(34, 60, 80, 0.4);
+}
+
+.league-logo {
+  max-width: 286px;
+  max-height: 155px;
+}
+
+.btn-outline-info:hover {
+  color: white;
+}
+
+.mx-datepicker,
+.mx-input-wrapper,
+.mx-input,
+.mx-datepicker-range {
+  height: 100%;
+}
+
+.mx-datepicker-range .mx-input {
+  height: 38px;
+}
+
+.mx-input {
+  padding: .375rem .75rem;
+  color: #212529;
+  font-size: 1rem;
+  border: 1px solid #ced4da;
+  background-clip: padding-box;
+  box-shadow: none;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.mx-input:focus {
+  color: #212529;
+  background-color: #fff;
+  border-color: #86b7fe;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
+}
+
+.mx-input:hover {
+  border-color: #ced4da;
+}
+
+
+
