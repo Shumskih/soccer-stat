@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <img src="../assets/images/loader.gif" alt="Loading..." />
+    <img class="img-fluid" src="../assets/images/loader.gif" alt="Loading..." />
   </div>
 </template>
 
