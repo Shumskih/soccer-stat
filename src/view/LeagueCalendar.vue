@@ -23,7 +23,7 @@
           :awayTeamName="match.awayTeam.name"
           :competitionName="leagueName"
           :matchStatus="match.status"
-          :gameDate="dateFormatted(match.utcDate)"
+          :gameDate="match.utcDate | formatDate"
         />
       </div>
     </div>
@@ -131,17 +131,6 @@ export default {
       this.filterError = false
       this.notFound = false
       this.noData = false
-    },
-    dateFormatted (date) {
-      let dateObject = new Date(date)
-
-      return (
-        ('0' + dateObject.getDate()).slice(-2) +
-        '.' +
-        ('0' + (dateObject.getMonth() + 1)).slice(-2) +
-        '.' +
-        dateObject.getFullYear()
-      )
     }
   }
 }
