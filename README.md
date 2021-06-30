@@ -1,4 +1,4 @@
-# soccer-stat3
+# soccer-stat
 
 > A Vue.js project
 
