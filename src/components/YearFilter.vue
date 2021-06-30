@@ -34,20 +34,40 @@ export default {
     }
   },
   created () {
-    if (localStorage.getItem('year')) {
-      this.year = localStorage.getItem('year')
-      this.setFilterValue()
+    if (this.setFilterValue() && localStorage.getItem('year')) {
+      this.$emit('year', this.year)
     }
-
-    this.$emit('year', this.year)
+    if (!this.setFilterValue()) {
+      this.$emit('year', 'empty')
+    }
   },
   methods: {
     resetFilter () {
-      window.history.pushState(null, '', document.location.href.replace(document.location.search, ''))
+      let url = new URL(document.location.href)
+      let params = ''
+
+      url.searchParams.delete('season')
+
+      let count = 0
+      url.searchParams.forEach(function (value, key) {
+        (count === 0) ? params += '?' + key + '=' + value : params += '&' + key + '=' + value
+        count++
+      })
+
+      window.history.pushState(null, '', document.location.href.replace(document.location.search, params))
       localStorage.removeItem('year')
     },
     setUrlParameters () {
-      window.history.pushState(null, '', '?season=' + this.year)
+      let url = new URL(document.location.href)
+      let params = '?season=' + this.year
+
+      url.searchParams.forEach(function (value, key) {
+        if (key !== 'season') {
+          params += '&' + key + '=' + value
+        }
+      })
+
+      window.history.pushState(null, '', params)
     },
     setFilterValue () {
       if (Object.keys(this.$route.query).length !== 0) {

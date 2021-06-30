@@ -47,10 +47,31 @@ export default {
   },
   methods: {
     resetFilter () {
-      window.history.pushState(null, '', document.location.href.replace(document.location.search, ''))
+      let url = new URL(document.location.href)
+      let params = ''
+
+      url.searchParams.delete('dateFrom')
+      url.searchParams.delete('dateTo')
+
+      let count = 0
+      url.searchParams.forEach(function (value, key) {
+        (count === 0) ? params += '?' + key + '=' + value : params += '&' + key + '=' + value
+      })
+
+      window.history.pushState(null, '', document.location.href.replace(document.location.search, params))
     },
     setUrlParameters () {
-      window.history.pushState(null, '', '?dateFrom=' + this.range[0] + '&dateTo=' + this.range[1])
+      let url = new URL(document.location.href)
+      let params = '?dateFrom=' + this.range[0] + '&dateTo=' + this.range[1]
+      let rangeParams = ['dateFrom', 'dateTo']
+
+      url.searchParams.forEach(function (value, key) {
+        if (rangeParams.indexOf(key) === -1) {
+          params += '&' + key + '=' + value
+        }
+      })
+
+      window.history.pushState(null, '', params)
     },
     setFilterValue () {
       if (Object.keys(this.$route.query).length !== 0) {

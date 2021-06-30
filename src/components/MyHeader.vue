@@ -11,8 +11,8 @@
           </li>
         </ul>
 
-        <div class="d-flex">
-          <input v-model="search" type="search" class="form-control" placeholder="Поиск..." aria-label="Поиск"/>
+        <div class="d-flex flex-column flex-sm-row flex-md-row">
+          <input v-model="search" type="search" class="form-control mb-3 mb-sm-0" placeholder="Поиск..." aria-label="Поиск"/>
           <div>
             <YearFilter @year="emitYear($event)"/>
           </div>
